@@ -215,6 +215,54 @@ Example: `=IF(B2>50,"Pass","Fail")` — checks a score and labels it.
 
 ---
 
+📈 Part 3: Descriptive Statistics — Making Sense of a Dataset
+
+After formulas and navigation, the next layer is descriptive statistics — using a handful of numbers to summarize an entire dataset. Two big families here: measures of central tendency (what's "typical") and measures of spread (how scattered the data is).
+
+A. Measures of central tendency
+
+These try to answer: "if I had to describe this dataset with just one number, what would it be?"
+
+Measure	What it tells you	Formula	Best used when
+Mean	The arithmetic average — add everything up, divide by how many values there are	=AVERAGE(range)	The data has no major outliers (the mean is easily skewed by extreme values)
+Median	The middle value once the data is sorted from smallest to largest	=MEDIAN(range)	The data has outliers — median ignores extreme values better than mean
+Mode	The value that shows up most often	=MODE(range)	The data is categorical (grouped into a fixed number of categories) rather than continuous
+
+Worked example (mean): For {1, 3, 5, 8, 10, 13, 16}, add them up (56) and divide by the count (7) → mean = 8.
+
+Worked example (median): Same dataset, already sorted, 7 values → the 4th value (the middle one) is the median → 8.
+
+Worked example (mode): For {5, 1, 5, 8, 5, 1, 5}, the number 5 shows up most → mode = 5.
+
+👉 Beginner insight: Mean, median, and mode can all be different numbers for the same dataset — that's normal. Which one you trust depends on whether your data has outliers or is categorical.
+
+B. Measures of spread
+
+These try to answer: "how scattered is this data around that typical value?" A "typical value" alone can be misleading without knowing how spread out the rest of the data is.
+
+Measure	What it tells you	Formula
+Range	The gap between the largest and smallest value	=MAX(range) - MIN(range)
+Quartiles	Splits sorted data into four equal quarters (Q1, Q2/median, Q3)	=QUARTILE(data, quartile_number)
+Interquartile Range (IQR)	The spread of just the middle 50% of the data (between Q1 and Q3)	=QUARTILE(data, 3) - QUARTILE(data, 1)
+Variance	The average of the squared differences between each data point and the mean — measures overall variability	=VAR(range)
+Standard Deviation	The square root of variance — variability expressed in the same units as the original data (easier to interpret than variance)	=STDEV(range)
+
+Worked example (range): For {1, 3, 5, 8, 10, 13, 16}, range = 16 − 1 = 15.
+
+Worked example (IQR): For {1, 3, 5, 6, 8, 10, 13, 16, 17, 19, 22}, Q3 = 17 and Q1 = 5, so IQR = 17 − 5 = 12. This tells you the middle half of the data spans 12 units.
+
+👉 Beginner insight: Variance is mathematically important but hard to interpret on its own because it's in "squared units." Standard deviation fixes that by converting back to normal units — that's why it's the one most commonly quoted (e.g. "the average was 50 ± 5").
+
+C. Central tendency + spread — quick-reference cheat sheet
+I want to...	Use this
+Find the typical value (no outliers)	AVERAGE
+Find the typical value (has outliers)	MEDIAN
+Find the most common category	MODE
+See the full spread of the data	MAX - MIN (Range)
+See the spread of just the middle 50%	QUARTILE(data,3) - QUARTILE(data,1)
+Measure overall variability (technical)	VAR
+Measure overall variability (interpretable)
+
 ## 📝 Notes to self (and to future readers)
 
 - Spreadsheet formulas calculate the **math inside the parentheses first**, before applying the function — so `2-1` becomes `1` before `CEILING.MATH` even sees it. Simplify by hand first if unsure.
